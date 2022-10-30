@@ -14,7 +14,7 @@ type ErrorResponse struct {
 	Data    interface{} `json:"data"`
 }
 
-func FormatErrorValidation(err error) ErrorResponse {
+func FormatErrorValidation(err error, message string) ErrorResponse {
 	var errorResponse ErrorResponse
 
 	var errors []string
@@ -42,7 +42,7 @@ func FormatErrorValidation(err error) ErrorResponse {
 		errors = append(errors, tempError)
 	}
 	errorResponse.Status = "Bad Request"
-	errorResponse.Message = ""
+	errorResponse.Message = message
 	errorResponse.Data = errors
 
 	return errorResponse
